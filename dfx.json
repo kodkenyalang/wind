@@ -1,37 +1,25 @@
 {
-  "version": 1,
   "canisters": {
-    "wind_backend": {
-      "main": "backend/main.mo",
-      "type": "motoko"
-    },
-    "wind_frontend": {
-      "type": "assets",
-      "source": "frontend/dist"
-    },
-    "internet_identity": {
-      "type": "custom",
-      "candid": "",
-      "wasm": "",
-      "remote": {
-        "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    "wind": {
+      "type": "motoko",
+      "main": "src/wind/src/main.mo",
+      "declarations": {
+        "output": "frontend/src/declarations/wind",
+        "bindings": ["js", "ts"]
       }
+    },
+    "solana_canister": {
+      "type": "rust",
+      "package": "solana_canister",
+      "candid": "src/solana_canister/solana_canister.did"
     }
   },
   "defaults": {
     "build": {
+      "args": "",
       "packtool": "vessel sources"
     }
   },
-  "networks": {
-    "local": {
-      "bind": "127.0.0.1:4943",
-      "type": "ephemeral"
-    },
-    "ic": {
-      "providers": ["https://ic0.app"],
-      "type": "persistent"
-    }
-  },
-  "output_env_file": ".env"
+  "output_env_file": ".env",
+  "version": 1
 }
