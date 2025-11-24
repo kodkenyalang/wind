@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wind dApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Wind dApp</h1>
+            <div id="auth-section">
+                <button id="loginBtn">Login</button>
+                <button id="logoutBtn" style="display: none;">Logout</button>
+                <span id="userStatus">Not logged in</span>
+            </div>
+        </header>
+
+        <main id="mainContent" style="display: none;">
+            <div id="user-info">
+                <h2>User Information</h2>
+                <p>Role: <span id="userRoleDisplay">-</span></p>
+                <p>Principal: <span id="userPrincipalDisplay">-</span></p>
+            </div>
+
+            <!-- Admin Controls -->
+            <section id="adminSection" style="display: none;">
+                <h2>Admin Controls</h2>
+                <div class="admin-controls">
+                    <div class="control-group">
+                        <h3>Fetch Current Prices</h3>
+                        <button id="fetchPriceBtn">Fetch Prices from API</button>
+                        <div id="fetchResult"></div>
+                    </div>
+                    <div class="control-group">
+                        <h3>Update Price Benchmarks</h3>
+                        <input type="number" id="solPriceInput" placeholder="SOL Price" step="0.01">
+                        <input type="number" id="btcPriceInput" placeholder="BTC Price" step="0.01">
+                        <button id="updateBenchmarkBtn">Update Benchmarks</button>
+                    </div>
+                    <div class="control-group">
+                        <h3>Assign User Role</h3>
+                        <input type="text" id="assignUserInput" placeholder="User Principal">
+                        <select id="assignRoleSelect">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        <button id="assignRoleBtn">Assign Role</button>
+                    </div>
+                     <div class="control-group">
+                        <h3>Record Reward Event</h3>
+                        <input type="text" id="rewardRecipientInput" placeholder="Recipient Address">
+                        <input type="number" id="rewardAmountInput" placeholder="Amount" step="0.01">
+                        <input type="text" id="triggerConditionInput" placeholder="Trigger Condition">
+                        <button id="recordRewardBtn">Record Event</button>
+                    </div>
+                    <div class="control-group">
+                        <h3>Initialize Solana Integration</h3>
+                        <input type="text" id="solanaCanisterIdInput" placeholder="Solana Canister ID">
+                        <button id="initSolanaBtn">Initialize</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Profile Section -->
+            <section id="profileSection">
+                <h2>User Profile</h2>
+                <div id="profileDisplay">
+                    <p>Name: <span id="profileName">-</span></p>
+                    <p>Wallet Address: <span id="profileWallet">-</span></p>
+                </div>
+                <div id="profileForm" style="display: none;">
+                    <input type="text" id="profileNameInput" placeholder="Your Name">
+                    <input type="text" id="profileWalletInput" placeholder="Wallet Address">
+                    <button id="saveProfileBtn">Save Profile</button>
+                    <button id="cancelProfileBtn">Cancel</button>
+                </div>
+                <button id="editProfileBtn">Edit Profile</button>
+            </section>
+
+            <!-- Price Data Section -->
+            <section id="priceSection">
+                <h2>Price Data</h2>
+                <div>
+                    <h3>Current Prices</h3>
+                    <div id="currentPricesDisplay">-</div>
+                </div>
+                <div>
+                    <h3>Price Benchmarks</h3>
+                    <ul id="benchmarksList"></ul>
+                </div>
+            </section>
+
+             <!-- Reward History Section -->
+            <section id="rewardSection">
+                <h2>Reward History</h2>
+                <ul id="rewardHistoryList"></ul>
+            </section>
+
+            <!-- Solana Section -->
+            <section id="solanaSection">
+                <h2>Solana Integration</h2>
+                 <div class="control-group">
+                    <h3>Your Solana Address</h3>
+                    <button id="getSolanaAddressBtn">Get Address</button>
+                    <div id="solanaAddressDisplay">-</div>
+                </div>
+                 <div class="control-group">
+                    <h3>Get SOL Balance</h3>
+                    <button id="getSolBalanceBtn">Get Balance</button>
+                    <div id="solBalanceDisplay">-</div>
+                </div>
+                 <div class="control-group">
+                    <h3>Send SOL</h3>
+                    <input type="text" id="sendSolRecipient" placeholder="Recipient Address">
+                    <input type="number" id="sendSolAmount" placeholder="Amount (lamports)" step="1">
+                    <button id="sendSolBtn">Send SOL</button>
+                </div>
+                 <div class="control-group">
+                    <h3>Get SPL Token Balance</h3>
+                    <input type="text" id="tokenMintInput" placeholder="Token Mint Address">
+                    <button id="getTokenBalanceBtn">Get Balance</button>
+                    <div id="tokenBalanceDisplay">-</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@dfinity/agent@0.20.2/dist/cjs/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@dfinity/auth-client@0.20.2/dist/cjs/index.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
